@@ -8,41 +8,57 @@
 import SwiftUI
 
 struct Dashboard: View {
+    
+    @State private var score = 790.0
+    @State private var isEditing = false
+    
     var body: some View {
-        NavigationView {
+        VStack {
             VStack{
-                Text("Dashboard")
-                    .font(.system(size: 30))
-                    .font(.headline)
-                    .foregroundColor(.green)
+                Spacer(minLength: 30)
+                VStack(spacing: 0){
+                    Text("790")
+                        .font(.system(size: 100))
+                        .font(.largeTitle)
+                        .bold()
+                        .foregroundColor(.white)
+                    
+                    Slider(
+                        value: $score,
+                        in: 0...900.0
+//                        onEditingChanged: { editing in
+//                            isEditing = editing
+//                        }
+                    )
+                    .accentColor(Color("BrightGreen")).disabled(true)
+//                    .disabled(true)
+//                    .tint(Color("BrightGreen"))
+                    .padding(.all)
+                   
+                }
                 
                 HStack{
                     RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(.blue)
+                        .foregroundColor(Color.black)
                     RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(.red)
+                        .foregroundColor(Color("BrightGreen"))
                 }
                 .padding(.horizontal)
                 
-                
                 HStack{
                     RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(.yellow)
+                        .foregroundColor(.white)
                     RoundedRectangle(cornerRadius: 10)
                         .foregroundColor(.green)
+                    RoundedRectangle(cornerRadius: 10)
+                        .foregroundColor(Color("DarkGreen"))
                 }
                 .padding(.horizontal)
                 
-                
-                HStack{
-                    RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(.purple)
-                    RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(.pink)
-                }
-                .padding(.horizontal)
-                
+                Spacer(minLength: 100)
             }
+            .background(Color("DarkGreen").opacity(0.9).ignoresSafeArea(.all))
+            .navigationTitle("Dashboard")
         }
     }
 }

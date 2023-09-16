@@ -12,52 +12,61 @@ struct CreateAccount: View {
     @State private var nameComponents = PersonNameComponents()
     @State private var username: String = ""
     @State private var password: String = ""
-
+    
     
     var body: some View {
-        NavigationView {
+        VStack {
             Form {
-                Section(header: Text("Create New Account")) {
+                Section(header: Text("Create New Account").foregroundColor(Color.white)) {
                     HStack {
                         Text("Name: ")
                         TextField(
-                                "Enter your name",
-                                value: $nameComponents,
-                                format: .name(style: .medium)
-                            )
+                            "Enter your name",
+                            value: $nameComponents,
+                            format: .name(style: .medium)
+                        )
                         .padding(.all)
                     }
-                    
                     
                     HStack {
                         Text("Username: ")
                         TextField(
-                                "Enter a username",
-                                text: $username
-                            )
+                            "Enter a username",
+                            text: $username
+                        )
                         .padding(.all)
                     }
                     
                     HStack {
                         Text("Password: ")
                         TextField(
-                                "Include at least one number",
-                                text: $password
-                            )
+                            "Include at least one number",
+                            text: $password
+                        )
                         .padding(.all)
                     }
                 }
-                
             }
             .frame(alignment: .center)
-            Spacer()
+            .scrollContentBackground(.hidden)
+            
+            NavigationLink(destination: {
+                IntakeForm()
+            }, label: {
+                VStack(alignment:.trailing){
+                    Text("Next")
+                        .foregroundColor(Color.white)
+                }
+            })
         }
-      
+        .background(Color("DarkGreen").opacity(0.9).ignoresSafeArea(.all))
+        .navigationTitle("Create Account")
+        
     }
 }
-
-struct CreateAccount_Previews: PreviewProvider {
-    static var previews: some View {
-        CreateAccount()
+    
+    struct CreateAccount_Previews: PreviewProvider {
+        static var previews: some View {
+            CreateAccount()
+        }
     }
-}

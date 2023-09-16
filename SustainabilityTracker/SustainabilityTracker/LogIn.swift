@@ -13,9 +13,9 @@ struct LogIn: View {
     @State private var password: String = ""
 
     var body: some View {
-        NavigationView {
+        VStack {
             Form {
-                Section(header: Text("Log In")) {
+                Section(header: Text("Log In").foregroundColor(Color.white)) {
                     
                     HStack {
                         Text("Username: ")
@@ -38,8 +38,18 @@ struct LogIn: View {
                 
             }
             .frame(alignment: .center)
-            Spacer()
+            .scrollContentBackground(.hidden)
+          
+            NavigationLink(destination: {
+                Dashboard()
+            }, label: {
+                VStack(alignment:.trailing){
+                    Text("Dashboard")
+                        .foregroundColor(Color.white)
+                }
+            })
         }
+        .background(Color("DarkGreen").opacity(0.9).ignoresSafeArea(.all,edges:.all))
     }
 }
 

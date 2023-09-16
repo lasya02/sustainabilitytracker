@@ -17,17 +17,19 @@ struct IntakeForm: View {
     var body: some View {
         VStack{
             Form{
-                Section(header: Text("Tell us about your current lifestyle")) {
-
-                    Text("How many people do you live with?")
-                        .frame(alignment: .center)
+                Section(header: Text("Tell us about your current lifestyle").foregroundColor(Color.white)) {
                     
-                    Picker("How many people live in your house", selection: $household) {
-                        Text("0-3").tag(household)
-                        Text("3-6").tag(household)
-                        Text("6+").tag(household)
+                    VStack{
+                        Text("How many people do you live with?")
+
+                        Picker("How many people live in your house", selection: $household) {
+                            Text("0-3").tag(household)
+                            Text("3-6").tag(household)
+                            Text("6+").tag(household)
+                        }
+                        .pickerStyle(.segmented)
+                       
                     }
-                    .pickerStyle(.segmented)
                     
                     Picker("How do you commute to work/school", selection: $commute) {
                         Text("public transportation").tag(commute)
@@ -51,12 +53,21 @@ struct IntakeForm: View {
                             )
                         .padding(.all)
                     }
-                    
-                    
-                    
                 }
             }
+            .tint(Color("DarkGreen"))
+            .scrollContentBackground(.hidden)
+            
+            NavigationLink(destination: {
+                Dashboard()
+            }, label: {
+                VStack(alignment:.trailing){
+                    Text("Let's See Your Results")
+                        .foregroundColor(Color.white)
+                }
+            })
         }
+        .background(Color("DarkGreen").opacity(0.9).ignoresSafeArea(.all, edges: .all))
     }
 }
 
